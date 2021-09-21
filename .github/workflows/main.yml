@@ -31,10 +31,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        if: ${{ github.event.inputs.image }} != ""
+        if: ${{ github.event.inputs.image }}
       
       - name: kustomize edit
-        if: ${{ github.event.inputs.image }} != ""
+        if: ${{ github.event.inputs.image }}
         run: |
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           kustomize edit set image ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}
@@ -42,6 +42,6 @@ jobs:
       
       - name: Git Commit/Push Changes
         uses: actions-x/commit@v2
-        if: ${{ github.event.inputs.image }} != ""
+        if: ${{ github.event.inputs.image }}
         with:
           message: "kustomize set image to ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}"
