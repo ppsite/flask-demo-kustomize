@@ -35,5 +35,5 @@ jobs:
       - name: Kustomize Edit image
         uses: williamhogman/kustomize-set-image-hook@v1.5
         with:
-          name: ${{ image }}
-          newTag: ${{ sha-tag }}
+          name: ${{ github.event.inputs.image }}
+          newTag: ${{ github.event.inputs.sha-tag }}
