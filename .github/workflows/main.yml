@@ -32,15 +32,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: kustomize edit
-        run: |
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-          kustomize edit set image ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}
-          git add *
-          git commit -m "kustomize set image to ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}"
-#       - name: Kustomize Edit image
-#         uses: williamhogman/kustomize-set-image-hook@v1.5
-#         with:
-#           name: ${{ github.event.inputs.image }}
-#           newTag: ${{ github.event.inputs.sha-tag }}
-#           newName: ${{ github.event.inputs.image }}
+#       - name: kustomize edit
+#         run: |
+#           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+#           kustomize edit set image ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}
+#           git add *
+#           git commit -m "kustomize set image to ${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}"
+      - name: Kustomize Edit image
+        uses: williamhogman/kustomize-set-image-hook@v1.5
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        with:
+          name: ${{ github.event.inputs.image }}
+          newTag: ${{ github.event.inputs.sha-tag }}
+          newName: ${{ github.event.inputs.image }}
