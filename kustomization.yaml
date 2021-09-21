@@ -7,5 +7,4 @@ resources:
 - secret-sealed.yaml
 images:
 - name: 364950776/flask-demo
-  newName: 364950776/flask-demo
   newTag: 4e3c18c73f15a59d7ad924682949ca3143025ab7
