@@ -4,7 +4,7 @@ resources:
 - namespace.yaml
 - deployment.yaml
 - service.yaml
-- secret.yaml
+- secret-sealed.yaml
 images:
 - {}
 - name: 364950776/flask-demo
